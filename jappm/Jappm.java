@@ -128,7 +128,7 @@ public class Jappm {
             for (int[] pixelArr2 : pixelArr1) {
                 contents = contents + String.format("%s %s %s ",pixelArr2[0],pixelArr2[1],pixelArr2[2]);
                 i++;
-                System.out.println(String.format("pixel Written %s/%s",i,numPix));
+                //System.out.println(String.format("pixel Written %s/%s",i,numPix));
                 
             }
             contents = contents + "\n";
@@ -178,7 +178,20 @@ public class Jappm {
     }
 
     public void drawLine(int StartX,int StartY, int EndX, int EndY, JColor jColor){
+
+    // Naive line Drawing algorithm    
+    //dx = x2 − x1
+    //dy = y2 − y1
+    //for x from x1 to x2 do
+    //y = y1 + dy × (x − x1) / dx
+    //plot(x, y)
+    int dx = EndX - StartX;
+    int dy = EndY - StartY;
         
+    for(int x = StartX; x < EndX; x++) {
+        int y = StartY + (dy * (x - StartX)) / dx;
+        drawPoint(x, y, jColor);
+    }
 
 
     }
