@@ -14,14 +14,16 @@ public class Jappm {
     private String pixel[];
     private String ppmStart;
     // Constructor with Filename and color
-    public Jappm(int width, int height, String colorAscii, String fileName) {
-        //TODO: Match color with colorfinding function for easy use
-        this.width = width;
-        this.height = height;
-        this.colorAscii = colorAscii;
-        this.fileName = fileName + ".ppm";
-        fillColor(colorAscii);
-    }
+
+
+    // public Jappm(int width, int height, String colorAscii, String fileName) {
+    //     //TODO: Match color with colorfinding function for easy use
+    //     this.width = width;
+    //     this.height = height;
+    //     this.colorAscii = colorAscii;
+    //     this.fileName = fileName + ".ppm";
+    //     fillColor(colorAscii);
+    // }
     // General use constructor to use Preconfigured uses
     public Jappm(String fileName,int width, int height) {
         //TODO: Match color with colorfinding function for easy use
@@ -36,19 +38,22 @@ public class Jappm {
         this.height = height;
         this.colorAscii = colorAscii;
         this.fileName = "out.ppm";
+        this.ppmStart= "P3\n" + String.valueOf(width) + " " + String.valueOf(height) + "\n" +"255\n";
     }
     // Basic constructor without file name defaults Filename to out.ppm
     public Jappm(int width, int height) {
+        this.pixels = new int[width][height][3];
         this.width = width;
         this.height = height;
         this.fileName = "out.ppm";
+        this.ppmStart= "P3\n" + String.valueOf(width) + " " + String.valueOf(height) + "\n" +"255\n";
     }
 
     public Jappm(int[][][] pixels,int width,int height) {
         this.pixels = pixels;
         
         this.ppmStart= "P3\n" + String.valueOf(width) + " " + String.valueOf(height) + "\n" +"255\n";
-        writeToFile();
+        writePixelBufferToFile();
     }
 
 
@@ -59,29 +64,29 @@ public class Jappm {
 
 
 
-    private void fillColor(String colorToFillImg) {
+    // private void fillColor(String colorToFillImg) {
        
-        this.pixel = new String[(this.width * this.height) * 3];
+    //     this.pixel = new String[(this.width * this.height) * 3];
         
         
-        int c = 0;
-        for (int i = 0; i < pixel.length; i++) {
-            if(c ==  1){
-                tempHolder = tempHolder + colorToFillImg + " ";
-                c++;
-            } else if(c == 2){
-                tempHolder = tempHolder + "0\n";
-                c = 0;
-            }else {
-                tempHolder = tempHolder + "0 ";
-                c++;
-            }
-            System.out.println("Byte written: " + String.valueOf(i));
-            colorToFillImg =  String.valueOf((Integer.parseInt(colorToFillImg) >= 255) ? 0 : Integer.parseInt(colorToFillImg) + 1);
-        }
-        writeToFile(tempHolder);
+    //     int c = 0;
+    //     for (int i = 0; i < pixel.length; i++) {
+    //         if(c ==  1){
+    //             tempHolder = tempHolder + colorToFillImg + " ";
+    //             c++;
+    //         } else if(c == 2){
+    //             tempHolder = tempHolder + "0\n";
+    //             c = 0;
+    //         }else {
+    //             tempHolder = tempHolder + "0 ";
+    //             c++;
+    //         }
+    //         System.out.println("Byte written: " + String.valueOf(i));
+    //         colorToFillImg =  String.valueOf((Integer.parseInt(colorToFillImg) >= 255) ? 0 : Integer.parseInt(colorToFillImg) + 1);
+    //     }
+    //     writeToFile(tempHolder);
 
-    }
+    // }
     public  void rainbow() {
        
         this.pixel = new String[(this.width * this.height) * 3];
@@ -107,12 +112,12 @@ public class Jappm {
             redStart =  String.valueOf((Integer.parseInt(redStart) >= 255) ? 0 : Integer.parseInt(redStart) + 1);
             blueStart =  String.valueOf((Integer.parseInt(blueStart) >= 255) ? 0 : Integer.parseInt(blueStart) + 1);
         }
-        writeToFile(tempHolder);
+        writePixelBufferToFile();
 
     }
 
 
-    private void writeToFile() {
+    public void writePixelBufferToFile() {
         // Creating file to be filled with contents
        createFile();
        // injecting the ppm Header into the contents string to be written to file
@@ -154,6 +159,28 @@ public class Jappm {
             System.out.println("An error occurred while writing the file.");
             e.printStackTrace();
         }
+    }
+
+    public void fillImg(JColor jColor) {
+        for(int[][] w : this.pixels){
+            for(int[] h : w){
+                h[0] = jColor.getRed();
+                h[1] = jColor.getGreen();
+                h[2] = jColor.getBlue();
+            }
+        }
+        
+    }
+
+    public void drawPoint(int x, int y, JColor jColor) {
+        this.pixels[x][y] = jColor.getColor();
+
+    }
+
+    public void drawLine(int StartX,int StartY, int EndX, int EndY, JColor jColor){
+        
+
+
     }
     
 
