@@ -26,10 +26,11 @@ public class Jappm {
     // }
     // General use constructor to use Preconfigured uses
     public Jappm(String fileName,int width, int height) {
-        //TODO: Match color with colorfinding function for easy use
+        this.pixels = new int[width][height][3];
         this.width = width;
         this.height = height;
         this.fileName = fileName + ".ppm";
+        this.ppmStart= "P3\n" + String.valueOf(width) + " " + String.valueOf(height) + "\n" +"255\n";
     }
     // constructor with color and without filename defaults Filename to out.ppm
     public Jappm(int width, int height, String colorAscii) {
@@ -173,11 +174,11 @@ public class Jappm {
     }
 
     public void drawPoint(int x, int y, JColor jColor) {
-        this.pixels[x][y] = jColor.getColor();
+        this.pixels[y][x] = jColor.getColor();
 
     }
 
-    public void drawLine(int StartX,int StartY, int EndX, int EndY, JColor jColor){
+    public void drawLine(int x1,int y1, int x2, int y2, JColor jColor){
 
     // Naive line Drawing algorithm    
     //dx = x2 − x1
@@ -185,16 +186,61 @@ public class Jappm {
     //for x from x1 to x2 do
     //y = y1 + dy × (x − x1) / dx
     //plot(x, y)
-    int dx = EndX - StartX;
-    int dy = EndY - StartY;
+    //  NAIVE APPROACH
+    // int dx = EndX - StartX;
+    // int dy = EndY - StartY;
         
-    for(int x = StartX; x < EndX; x++) {
-        int y = StartY + (dy * (x - StartX)) / dx;
-        drawPoint(x, y, jColor);
-    }
-
-
+    // for(int x = StartX; x < EndX; x++) {
+    //     int y = StartY + (dy * (x - StartX)) / dx;
+    //     drawPoint(x, y, jColor);
+    // }
+    
+    int deltaX = Math.abs(x2 - x1);
+    int deltaY = Math.abs(y2 - y1);
+    boolean swapped = false;
+    
+    // Swap axis if the slope is > 1
+    if (deltaY > deltaX) {
+        int swp = x1;
+        x1 = y1;
+        y1 = swp;
+    
+        swp = x2;
+        x2 = y2;
+        y2 = swp;
+    
+        swp = deltaX;
+        deltaX = deltaY;
+        deltaY = swp;
+    
+        swapped = true;
     }
     
+    int x = x1;
+    int y = y1;
+    
+    int sx = (int)Math.signum(x2 - x1);
+    int sy = (int)Math.signum(y2 - y1);
+    
+    int p = 2*deltaY - deltaX;
+    
+    for (int i = 0; i <= deltaX; ++i) {
+        if (swapped) {
+            drawPoint(y, x, jColor);;
+        }
+        else {
+            drawPoint(x, y, jColor);
+        }
+    
+        x += sx;
+    
+        if (p < 0) {
+            p += 2*deltaY;
+        }
+        else {
+            p += 2*deltaY - 2*deltaX;
+            y += sy;
+        }
 
-}
+    }
+}}
