@@ -243,4 +243,14 @@ public class Jappm {
         }
 
     }
-}}
+
+
+
+
+}
+    private void drawChar(int charCode) {
+        
+    }
+
+
+}
