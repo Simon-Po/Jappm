@@ -2,8 +2,8 @@ package jappm;
 
 import java.util.Hashtable;
 
-public class Chars {
-    private byte chars[][] =  {
+public  class Chars {
+    private static byte chars[][] =  {
         { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},   // U+0000 (nul)
         { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},   // U+0001
         { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},   // U+0002
@@ -139,7 +139,7 @@ public class Chars {
 
     
 
-    public Chars() {
+    public  Chars() {
         for(int i = 0; i < 126; i++) {
            
             table.put(String.valueOf(charsString.charAt(i)),chars[i]);
@@ -148,15 +148,21 @@ public class Chars {
     }
     
 
-    public String getChar(String ch) {
-        String out = "";
+    public int[] getChar(String ch) {
+        int arrI[] = new int[64];
         byte arr[] =  table.get(ch);
+        int i = 0;
         for (byte b :arr) {
             StringBuffer sbr = new StringBuffer(Integer.toBinaryString(((int) b) + 0x100).substring(1)).reverse();
-            out = out + sbr.toString() + "\n";
+            //arrI[i]  = Integer.parseInt(sbr.toString());
+            String temp[] = sbr.toString().split("");
+            for(String t : temp) {
+                arrI[i] = Integer.parseInt(t);
+                i++;
+            }
             
         }
-        return out;
+        return arrI;
     }
     
 

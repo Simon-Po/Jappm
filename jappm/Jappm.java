@@ -249,21 +249,25 @@ public class Jappm {
 
 }
     public void drawChar(String ch, int x, int y, JColor color) {
+        int initialX = x;
         System.out.println("initiated");
         Chars chars = new Chars();
-        String mask[] = chars.getChar(ch).split("");
+        int mask[] = chars.getChar(ch);
         for(int i = 0; i < mask.length;i++){
-            
-            if(mask[i] == "1") {
+           
+            if(mask[i] == 1) {
                 System.out.println("1");
                 drawPoint(x, y, color);
                 x++;
-            } else if(String.valueOf(mask[i]) == "\n") {
-                System.out.println("new Liune");
-                y++;
-                x = 0;
-            } else {
+            }
+            else {
+                System.out.println("0");
                 x++;
+            }
+
+            if(x == initialX + 8){
+                x = initialX;
+                y++;
             }
             
         }
