@@ -5,15 +5,10 @@ public class App {
     
     public static void main(String[] args) {
 
-        Chars s = new Chars();
-        byte ss[] = s.getChar("");
-
-
-        for (byte b : ss) {
-            StringBuffer sbr = new StringBuffer(Integer.toBinaryString(((int) b) + 0x100).substring(1).replaceAll("0", " ")).reverse();
-            System.out.println(sbr);
-            
-        }
+        Jappm j = new Jappm("CharTest", 20, 20);
+        j.drawLine(5, 5, 10, 10, new JColor(255, 255, 255));
+        j.drawChar("A", 5, 5, new JColor(255, 255, 255));
+        j.writePixelBufferToFile();
         
 
     

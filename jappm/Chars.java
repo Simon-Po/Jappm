@@ -137,6 +137,8 @@ public class Chars {
     private Hashtable<String,byte[]> table = new Hashtable<>(128);
     private String charsString = "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\t";
 
+    
+
     public Chars() {
         for(int i = 0; i < 126; i++) {
            
@@ -146,10 +148,18 @@ public class Chars {
     }
     
 
-    public byte[] getChar(String ch) {
-        
-        return table.get(ch);
+    public String getChar(String ch) {
+        String out = "";
+        byte arr[] =  table.get(ch);
+        for (byte b :arr) {
+            StringBuffer sbr = new StringBuffer(Integer.toBinaryString(((int) b) + 0x100).substring(1)).reverse();
+            out = out + sbr.toString() + "\n";
+            
+        }
+        return out;
     }
+    
+
     
 
 
