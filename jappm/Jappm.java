@@ -243,4 +243,37 @@ public class Jappm {
         }
 
     }
-}}
+
+
+
+
+}
+    public void drawChar(String ch, int x, int y, JColor color) {
+        int initialX = x;
+        System.out.println("initiated");
+        Chars chars = new Chars();
+        int mask[] = chars.getChar(ch);
+        for(int i = 0; i < mask.length;i++){
+           
+            if(mask[i] == 1) {
+                System.out.println("1");
+                drawPoint(x, y, color);
+                x++;
+            }
+            else {
+                System.out.println("0");
+                x++;
+            }
+
+            if(x == initialX + 8){
+                x = initialX;
+                y++;
+            }
+            
+        }
+
+
+    }
+
+
+}

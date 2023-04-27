@@ -5,29 +5,36 @@ public class App {
     
     public static void main(String[] args) {
 
-    
-    Jappm img = new Jappm("BresenhamLine",100,100);
-    
-    img.fillImg(new JColor(0, 0,0));
-    
-  
-    img.drawLine(10, 10, 10, 80, new JColor(0,255,0) );
-    img.drawLine(10, 10, 25, 20, new JColor(0,255,0) );
-    img.drawLine(25, 20, 10, 40, new JColor(0,255,0) );
-    img.drawLine(10, 40, 25, 80, new JColor(0,255,0) );
-    
+        Jappm j = new Jappm("CharTest", 100, 100);
+        
+        j.drawChar("R", 30, 4, new JColor(255, 255, 255));
+        j.drawChar("i", 30 +9,4, new JColor(255, 255, 255));
+        j.drawChar("t", 30 +18, 4, new JColor(255, 255, 255));
+        j.drawChar("a", 30 + 9*3, 4, new JColor(255, 255, 255));
 
-    img.drawLine(30, 80, 30, 40, new JColor(0,255,0) );
-    img.drawLine(30, 10, 30, 20, new JColor(0,255,0) );
 
-    img.drawLine(45, 20, 45, 80, new JColor(0,255,0) );
-    img.drawLine(35, 40, 55, 40, new JColor(0,255,0) );
+        j.drawChar("I", 10, 4 + 8, new JColor(255, 255, 255));
+        j.drawChar("L", 15 +9,4 +8, new JColor(255, 50, 50));
+        j.drawChar("O", 15 +18, 4 +8, new JColor(255, 100, 100));
+        j.drawChar("V", 15 + 9*3, 4 +8, new JColor(255, 120, 120));
+        j.drawChar("E", 15 + 9*4, 4 +8, new JColor(255, 150, 150));
+        j.drawChar("Y", 50 +18, 4 +8, new JColor(255, 255, 255));
+        j.drawChar("O", 50 + 9*3, 4 +8, new JColor(255, 255, 255));
+        j.drawChar("U", 50 + 9*4, 4 +8, new JColor(255, 255, 255));
 
-    img.drawLine(55, 80, 65, 10, new JColor(0,255,0) );
-    img.drawLine(75, 80, 65, 10, new JColor(0,255,0) );
-    img.drawLine(55, 45, 75, 45, new JColor(0,255,0) );
 
-    img.writePixelBufferToFile();
+        j.drawLine(50, 90, 30, 50, new JColor(255, 255, 255));
+        j.drawLine(50, 90, 70, 50, new JColor(255, 255, 255));
+
+        j.drawLine(50, 50, 40, 40, new JColor(255, 255, 255));
+        j.drawLine(40, 40, 30, 50, new JColor(255, 255, 255));
+        
+        j.drawLine(70, 50, 60, 40, new JColor(255, 255, 255));
+        j.drawLine(60, 40, 50, 50, new JColor(255, 255, 255));
+
+        j.writePixelBufferToFile();
+        
+
     
     
     
