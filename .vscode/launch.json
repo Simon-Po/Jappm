@@ -2,6 +2,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "TestIt",
+            "request": "launch",
+            "mainClass": "jappm.TestIt",
+            "projectName": "Jappm_165ea8cb"
+        },
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "jappm.App",
+            "projectName": "Jappm_165ea8cb"
+        },
+        {
+            "type": "java",
             "name": "App",
             "request": "launch",
             "mainClass": "jappm.App",

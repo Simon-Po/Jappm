@@ -248,20 +248,34 @@ public class Jappm {
 
 
 }
+    public void drawRect(int x1, int y1, int x2,int y2, JColor color) {
+
+        drawLine(x1, y1, x2, y1, color);
+        drawLine(x2, y1, x2, y2, color);
+        drawLine(x2, y2, x1, y2, color);
+        drawLine(x1, y2, x1, y1, color);
+        
+    }
+
+
+
+
+
+
     public void drawChar(String ch, int x, int y, JColor color) {
         int initialX = x;
-        System.out.println("initiated");
+        
         Chars chars = new Chars();
         int mask[] = chars.getChar(ch);
         for(int i = 0; i < mask.length;i++){
            
             if(mask[i] == 1) {
-                System.out.println("1");
+                
                 drawPoint(x, y, color);
                 x++;
             }
             else {
-                System.out.println("0");
+                
                 x++;
             }
 
