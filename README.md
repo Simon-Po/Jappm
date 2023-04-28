@@ -1,4 +1,4 @@
 # JAPPM 
 ## Java ppm library for easy visualisation of ideas
 
-code by @Simon-po
+working on implementing circle algorithms for questions dm me 
