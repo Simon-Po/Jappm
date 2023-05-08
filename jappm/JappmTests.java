@@ -15,6 +15,7 @@ public class JappmTests {
         testChars();
         testLines();
         testPoints();
+        testRectFill();
 
 
     }
@@ -28,8 +29,20 @@ public class JappmTests {
     private void testRect() {
         Jappm j = new Jappm("./Tests/RectTest", 100, 100);
 
-        j.drawRect(10, 10, 90, 90, new JColor(255, 255, 255));
+        j.drawRect(10, 10, 90, 90, new JColor(255, 255, 255),false);
         
+        j.writePixelBufferToFile();
+    }
+
+
+    private void testRectFill() {
+        Jappm j = new Jappm("./Tests/fillTest", 100, 100);
+        
+        int i = 0;
+        while(i != 90) {
+            i = i + 10;
+            j.drawRect(i,i, 99-i, 99-i, new JColor(255-i*2, 255-i*2, 255-i*2), true);
+        }
         j.writePixelBufferToFile();
     }
 

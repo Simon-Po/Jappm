@@ -248,12 +248,20 @@ public class Jappm {
 
 
 }
-    public void drawRect(int x1, int y1, int x2,int y2, JColor color) {
+    public void drawRect(int x1, int y1, int x2,int y2, JColor color,boolean fill ) {
 
         drawLine(x1, y1, x2, y1, color);
         drawLine(x2, y1, x2, y2, color);
         drawLine(x2, y2, x1, y2, color);
         drawLine(x1, y2, x1, y1, color);
+
+        if(fill) {
+            for(int i = y1; i < y2; i++) {
+                for(int j = x1; j < x2; j++) {
+                    drawPoint(j, i, color);
+                }   
+            }
+        }
         
     }
 
