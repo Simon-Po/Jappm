@@ -4,6 +4,23 @@ import java.io.File;
 import java.io.IOException;
 import java.io.FileWriter;
 
+/*
+
+;--------------------------------------------------;
+TODO: Support non Rectangle forms of Pixel-Matrix
+
+
+
+
+
+
+
+*/ 
+
+
+
+
+
 public class Jappm {
     private int width;
     private int height;
@@ -266,7 +283,15 @@ public class Jappm {
     }
 
 
+    public void drawTiangle(int x1,int y1,int x2,int y2,int x3,int y3, JColor color){
 
+        drawLine(x1,y1,x2,y2,color);
+        drawLine(x2,y2,x3,y3,color);
+        drawLine(x1,y1,x3,y3,color);
+        
+
+
+    }
 
 
 
